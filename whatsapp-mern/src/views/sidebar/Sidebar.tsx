@@ -7,7 +7,7 @@ import {
   SearchOutlined,
 } from "@material-ui/icons/";
 import { IconButton, Avatar, Input } from "@material-ui/core";
-import { SidebarChat } from "./SidebarChat";
+import { SidebarChat } from "./components/sidebarChat/SidebarChat";
 export const Sidebar = () => {
   return (
     <div className="sidebar">
