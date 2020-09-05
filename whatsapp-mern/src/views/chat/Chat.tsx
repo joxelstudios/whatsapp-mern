@@ -10,7 +10,24 @@ import {
   Mic,
 } from "@material-ui/icons";
 import { ChatBubble } from "./components/chatBubble/ChatBubble";
-export const Chat = () => {
+import axios from "../../api/axios";
+
+
+export const Chat = ({messages}:any) => {
+  const [input, setInput] = React.useState("");
+
+  const sendMessage = async (e : React.FormEvent) =>{
+    e.preventDefault()
+    await axios.post('/messages/new', {
+      message: input,
+      name: "Demo App",
+      timestamp: "Just Now",
+      received: false
+    })
+    
+    setInput("");
+  };
+
   return (
     <div className="chat">
       <div className="chat__header">
@@ -32,20 +49,22 @@ export const Chat = () => {
         </div>
       </div>
       <div className="chat__body">
-        <ChatBubble />
-        <ChatBubble receiver />
-        <ChatBubble />
+        {messages.map((messageProps : any) => (
+          <ChatBubble {...messageProps}/>
+        ))}
+        
       </div>
       <div className="chat__footer">
         <InsertEmoticon />
         <form>
           <input
             type="text"
+            value={input}
             placeholder="Type a message"
-            onChange={(e: any) => SettingsInputAntenna(e.target.value)}
+            onChange={(e: any) => setInput(e.target.value)}
           />
           <button
-            // onClick={sendMessage}
+            onClick={sendMessage}
             type="submit"
           >
             Send a message

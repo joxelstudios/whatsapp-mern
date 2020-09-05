@@ -2,19 +2,18 @@ import React from "react";
 import "./ChatBubble.css";
 
 interface IChatBubbleProps {
-  receiver?: boolean;
-  message?: string;
-  timestamp?: string;
+  name: string;
+  message: string;
+  timestamp: string;
+  received?: boolean;
 }
 
-export const ChatBubble = ({
-  receiver,
-}: IChatBubbleProps) => {
+export const ChatBubble = ({name, message, timestamp, received}: IChatBubbleProps) => {
   return (
-    <p className={`chat__message ${receiver ? "chat__receiver" : ""}`}>
-      <span className="chat__name">User</span>
-      This is a message
-      <span className="chat__timestamp">{new Date().toUTCString()}</span>
+    <p className={`chat__message ${received ? "" : "chat__receiver"}`}>
+      <span className="chat__name">{name}</span>
+      {message}
+      <span className="chat__timestamp">{timestamp}</span>
     </p>
   );
 };
