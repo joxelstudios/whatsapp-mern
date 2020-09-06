@@ -31,9 +31,9 @@ export const Chat = ({messages}:any) => {
   return (
     <div className="chat">
       <div className="chat__header">
-        <Avatar />
+        <Avatar src="https://api.adorable.io/avatars/285/joel.png"/>
         <div className="chat__headerInfo">
-          <h3>Room Name</h3>
+          <h3>Joel Ramirez</h3>
           <p>Last seen at ...</p>
         </div>
         <div className="chat__headerRight">

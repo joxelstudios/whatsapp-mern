@@ -1,13 +1,19 @@
 import React from 'react'
 import "./SidebarChat.css"
 import { Avatar } from '@material-ui/core'
-export const SidebarChat = () => {
+
+interface ISidebarChatProps {
+    avatar: string,
+    roomName: string,
+    lastMessage: string,
+}
+export const SidebarChat = ({avatar, roomName, lastMessage}: ISidebarChatProps) => {
     return (
         <div className="sidebarChat">
-            <Avatar />
+            <Avatar src={avatar}/>
             <div className="sidebarChat__info">
-                <h2>Room name</h2>
-                <p>Last message in the room</p>
+                <h2>{roomName}</h2>
+                <p>{lastMessage}</p>
             </div>
         </div>
     )
