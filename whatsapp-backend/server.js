@@ -3,14 +3,15 @@ import mongoose from "mongoose";
 import Messages from "./dbMessages.js";
 import Pusher from 'pusher';
 import cors from "cors";//app config
+import {config} from "./config.js";
 const app = express();
 const port = process.env.PORT || 9000;
 const pusher = new Pusher({
-    appId: '1067592',
-    key: '3b12c96c16cdf6670478',
-    secret: '8786d01502f5d84e26a1',
-    cluster: 'us2',
-    encrypted: true
+    appId: config.appId,
+    key: config.key,
+    secret: config.secret,
+    cluster: config.cluster,
+    encrypted: config.encrypted
   });
 
 //middleware
@@ -19,7 +20,7 @@ app.use(cors());
 
 //DB config
 const connection_url =
-  "mongodb+srv://admin:XZF3dEsih9gU5jxu@cluster0.l5qqx.mongodb.net/whatsappdb?retryWrites=true&w=majority";
+  `mongodb+srv://admin:${config.DATABASE_ACCESS_TOKEN}@cluster0.l5qqx.mongodb.net/whatsappdb?retryWrites=true&w=majority`;
 mongoose.connect(connection_url, {
   useCreateIndex: true,
   useNewUrlParser: true,
